@@ -13,7 +13,7 @@ Graphics::ColorNames::Windows - Windows color names and equivalent RGB values
 
 =head1 DESCRIPTION
 
-This module defines color names and their associated RGB values used in 
+This module defines color names and their associated RGB values used in
 Microsoft Windows.
 
 =head1 SEE ALSO
@@ -43,7 +43,7 @@ sub NamesRgbTable() {
   return {
     'black'	         => 0x000000,
     'blue'	         => 0x0000ff,
-    'cyan'	         => 0x00ffff, 
+    'cyan'	         => 0x00ffff,
     'green'	         => 0x00ff00,
     'magenta'	         => 0xff00ff,
     'red'	         => 0xff0000,

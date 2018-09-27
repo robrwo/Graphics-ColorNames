@@ -10,6 +10,8 @@ Revision history for Graphics-ColorNames:
   [Other Changes]
   - Corrected typo in comment.
 
+  - Cleaned up whitespace in the source code.
+
 2.11    2008-01-10
   - updated version number for release
   - minor changes of text format

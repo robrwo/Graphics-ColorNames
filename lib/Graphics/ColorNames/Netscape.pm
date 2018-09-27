@@ -18,7 +18,7 @@ with Netscape 1.1 (I cannot determine whether they were once usable in
 Netscape or were arbitrary names for RGB values-- I<many of these names are
 not recognized by later versions of Netscape>).
 
-This scheme is deprecated, and will be removed from future versions of 
+This scheme is deprecated, and will be removed from future versions of
 L<Graphics::ColorNames> but available as a separate module from CPAN.
 
 =head1 SEE ALSO
@@ -32,7 +32,7 @@ L<Graphics::ColorNames::IE>
 L<Graphics::ColorNames::SVG>
 
 The color names come from L<http://wp.netscape.com/home/bg/colorindex.html>.
-Corrections to errors in the Netscape spec are due to 
+Corrections to errors in the Netscape spec are due to
 L<http://www.he.net/info/color/>.
 
 =head1 AUTHOR
@@ -110,7 +110,7 @@ sub NamesRgbTable() {
     "huntergreen"         =>0x8e2323,
     "indianred"           =>0xf5ccb0,
     "khaki"               =>0x238e23,
-    "lightblue"           =>0xcdd9d9, # 
+    "lightblue"           =>0xcdd9d9, #
     "lightgrey"           =>0xdbdb70,
     "lightsteelblue"      =>0x545454,
     "lightwood"           =>0x856363,
@@ -171,4 +171,3 @@ sub NamesRgbTable() {
 1;
 
 __END__
-

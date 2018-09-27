@@ -18,7 +18,7 @@ $rgb = $po->hex('green', '0x');    # returns '0x00ff00'
 $rgb = $po->hex('green', '#');     # returns '#00ff00'
 
 $rgb = $po->rgb('green');          # returns '0,255,0'
-@rgb = $po->rgb('green');          # returns (0, 255, 0)  
+@rgb = $po->rgb('green');          # returns (0, 255, 0)
 
 $rgb = $po->green;                 # same as $po->hex('green');
 
@@ -326,7 +326,7 @@ package Graphics::ColorNames::Orange;
 sub NamesRgbTable() {
   return sub {
     my $name = shift;
-    return 0xffa500;        
+    return 0xffa500;
   };
 }
 ```

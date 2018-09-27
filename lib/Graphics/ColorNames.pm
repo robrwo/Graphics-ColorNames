@@ -71,7 +71,7 @@ sub _load_scheme_from_module {
       croak "Cannot load color naming scheme \`$module\'";
     }
   }
-    
+
   {
     no strict 'refs';
     if ($module =~ $base) {
@@ -123,7 +123,7 @@ sub FETCH {
   if ($key =~ m/^\x23?([\da-f]{6})$/) {
     return $1;
   } else {
-      
+
       $key =~ s/[^a-z\d\%]//g; # ignore non-word characters
 
       my $val = undef;
@@ -172,7 +172,7 @@ sub load_scheme {
       tie %{$self->{_schemes}->[-1]}, 'Tie::Sub', $scheme;
   }
   elsif (ref($scheme) eq "ARRAY") {
-      # assumes these are Color::Library::Dictionary 0.02 files 
+      # assumes these are Color::Library::Dictionary 0.02 files
       my $s = { };
       foreach my $rec (@$scheme) {
 	  my $key  =  $rec->[0];
@@ -236,7 +236,7 @@ sub DESTROY {
   delete $self->{_iterator};
 }
 
-sub UNTIE {             # stub to avoid AUTOLOAD 
+sub UNTIE {             # stub to avoid AUTOLOAD
 }
 
 BEGIN {
@@ -276,7 +276,7 @@ sub tuple2hex {
 
 sub all_schemes {
     unless (%FoundSchemes) {
-	
+
       _load("DirHandle", "File::Spec");
 
       foreach my $dir (@INC) {
@@ -422,7 +422,7 @@ Using Build.PL (if you have L<Module::Build> installed):
   $rgb = $po->hex('green', '#');     # returns '#00ff00'
 
   $rgb = $po->rgb('green');          # returns '0,255,0'
-  @rgb = $po->rgb('green');          # returns (0, 255, 0)  
+  @rgb = $po->rgb('green');          # returns (0, 255, 0)
 
   $rgb = $po->green;                 # same as $po->hex('green');
 
@@ -702,7 +702,7 @@ Since version 1.03, C<NamesRgbTable> may also return a code reference:
   sub NamesRgbTable() {
     return sub {
       my $name = shift;
-      return 0xffa500;        
+      return 0xffa500;
     };
   }
 
