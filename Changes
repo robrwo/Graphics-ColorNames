@@ -1,7 +1,11 @@
 Revision history for Graphics-ColorNames:
 
+{{$NEXT}}
   [Documentation]
   - Reformated Changes file.
+
+  [Toolchain]
+  - Use Dist::Zilla to build distribution.
 
   [Other Changes]
   - Corrected typo in comment.
