@@ -39,8 +39,7 @@ modify it under the same terms as Perl itself.
 use strict;
 use warnings;
 
-our $VERSION = '2.11';
-#$VERSION = eval $VERSION;
+our $VERSION   = 'v3.0.0';
 
 # Original name and colors (v1.01 and earlier) from Kevin J. Walsh,
 # http://eies.njit.edu/~walsh/rgb.html

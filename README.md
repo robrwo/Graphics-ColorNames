@@ -4,7 +4,7 @@ Graphics::ColorNames
 
 # VERSION
 
-version 2.11
+version v3.0.0
 
 # SYNOPSIS
 

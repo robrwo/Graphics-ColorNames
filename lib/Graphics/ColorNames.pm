@@ -11,8 +11,7 @@ use Carp;
 use Module::Load 0.10;
 use Module::Loaded;
 
-our $VERSION   = '2.11';
-# $VERSION = eval $VERSION;
+our $VERSION   = 'v3.0.0';
 
 our %EXPORT_TAGS = (
  'all'     => [ qw( hex2tuple tuple2hex all_schemes ) ],
