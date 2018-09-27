@@ -1,5 +1,7 @@
-Revision history for Perl extension Graphics::ColorNames (with significant
-updates noted by asterisks, '*'):
+Revision history for Perl extension Graphics::ColorNames:
+
+  [Other Changes]
+  - Corrected typo in comment.
 
 2.11    Thu Jan 10 2008
 	- updated version number for release
@@ -204,5 +206,3 @@ updates noted by asterisks, '*'):
 
 0.10  19 Feb 2001
 	- original (experimental) version released
-
-

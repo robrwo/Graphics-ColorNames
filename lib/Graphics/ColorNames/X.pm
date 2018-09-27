@@ -48,7 +48,7 @@ our $VERSION = '2.11';
 # Afterwards, XConsortium: rgb.txt,v 10.41 94/02/20 18:39:36 rws Exp
 # Verified with Xorg: rgb.txt,v 1.3 2000/08/17 19:54:00 cpqbld Exp
 
-# Duplicate namesiwth spaces were removed in v2.10.
+# Duplicate names with spaces were removed in v2.10.
 
 sub NamesRgbTable() {
   use integer;
@@ -724,4 +724,3 @@ sub NamesRgbTable() {
 1;
 
 __END__
-
