@@ -1,9 +1,5 @@
-requires "Carp" => "0";
-requires "Exporter" => "0";
 requires "Module::Load" => "0.10";
 requires "Module::Loaded" => "0";
-requires "base" => "0";
-requires "integer" => "0";
 requires "perl" => "5.006";
 
 on 'test' => sub {
