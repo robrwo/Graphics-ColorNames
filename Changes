@@ -4,6 +4,12 @@ Revision history for Graphics-ColorNames:
   [Documentation]
   - Reformated Changes file.
 
+  - POD is built using Pod::Weaver.
+
+  - Removed outdated sections from POD.
+
+  - Added additional module(s) to SEE ALSO section.
+
   [Toolchain]
   - Use Dist::Zilla to build distribution.
 

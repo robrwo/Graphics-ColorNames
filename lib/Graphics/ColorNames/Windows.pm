@@ -1,8 +1,6 @@
 package Graphics::ColorNames::Windows;
 
-=head1 NAME
-
-Graphics::ColorNames::Windows - Windows color names and equivalent RGB values
+# ABSTRACT: Windows color names and equivalent RGB values
 
 =head1 SYNOPSIS
 
@@ -19,17 +17,6 @@ Microsoft Windows.
 =head1 SEE ALSO
 
 C<Graphics::ColorNames>
-
-=head1 AUTHOR
-
-Robert Rothenberg <rrwo at cpan.org>
-
-=head1 LICENSE
-
-Copyright (c) 2001-2008 Robert Rothenberg. All rights reserved.
-This program is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself.
-
 
 =cut
 

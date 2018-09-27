@@ -1,6 +1,6 @@
 # NAME
 
-Graphics::ColorNames
+Graphics::ColorNames - defines RGB values for common color names
 
 # VERSION
 
@@ -35,10 +35,6 @@ module that authors can use with other modules to specify colors by
 name; and (2) free module authors from having to "re-invent the wheel"
 whenever they decide to give the users the option of specifying a
 color by name rather than RGB value.
-
-# NAME
-
-Graphics::ColorNames - defines RGB values for common color names
 
 For example,
 
@@ -333,16 +329,6 @@ sub NamesRgbTable() {
 
 See [Graphics::ColorNames::GrayScale](https://metacpan.org/pod/Graphics::ColorNames::GrayScale) for an example.
 
-## Graphics::ColourNames
-
-The alias "Graphics::ColourNames" (British spelling) is no longer available
-as of version 2.01.
-
-It seems absurd to maintain it when all the modules does is provide an
-alternative spelling for the module _name_ without doing anything about
-the component colors of each scheme, and when most other modules
-(and non-Perl software) does not bother with such things.
-
 # SEE ALSO
 
 [Color::Library](https://metacpan.org/pod/Color::Library) provides an extensive library of color schemes. A notable
@@ -355,38 +341,10 @@ information about individual colors and map multiple colors to a single name.
 [Graphics::ColorObject](https://metacpan.org/pod/Graphics::ColorObject) can convert between RGB and other color space
 types.
 
+[Graphics::ColorUtils](https://metacpan.org/pod/Graphics::ColorUtils) can also convert betweeb RGB and other color
+space types, and supports RGB from names in various color schemes.
+
 [Acme::AutoColor](https://metacpan.org/pod/Acme::AutoColor) provides subroutines corresponding to color names.
-
-# AUTHOR
-
-Robert Rothenberg &lt;rrwo at cpan.org>
-
-## Acknowledgements
-
-Alan D. Salewski &lt;alans at cji.com> for feedback and the addition of
-`tuple2hex`.
-
-Steve Pomeroy &lt;xavier at cpan.org>, "chemboy" &lt;chemboy at perlmonk.org>
-and "magnus" &lt;magnus at mbox604.swipnet.se> who pointed out issues
-with various color schemes.
-
-## Suggestions and Bug Reporting
-
-Feedback is always welcome.  Please use the CPAN Request Tracker at
-[http://rt.cpan.org](http://rt.cpan.org) to submit bug reports.
-
-There is a Sourceforge project for this package at
-[http://sourceforge.net/projects/colornames/](http://sourceforge.net/projects/colornames/).
-
-If you create additional color schemes, please make them available
-separately in CPAN rather than submit them to me for inclusion into
-this module.
-
-# LICENSE
-
-Copyright (c) 2001-2008 Robert Rothenberg. All rights reserved.
-This program is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself.
 
 # SOURCE
 
@@ -396,6 +354,14 @@ and may be cloned from [git://github.com/robrwo/Graphics-ColorNames.git](git://g
 # AUTHOR
 
 Robert Rothenberg <rrwo@cpan.org>
+
+# CONTRIBUTORS
+
+- Alan D. Salewski <alans@cji.com>
+- Steve Pomeroy <xavier@cpan.org>
+- "chemboy" <chemboy@perlmonk.org>
+- "magnus" <magnus@mbox604.swipnet.se>
+- Gary Vollink <gary@vollink.com>
 
 # COPYRIGHT AND LICENSE
 

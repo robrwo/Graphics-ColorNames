@@ -1,8 +1,6 @@
 package Graphics::ColorNames::Netscape;
 
-=head1 NAME
-
-Graphics::ColorNames::Netscape - Netscape 1.1 Color Names
+# ABSTRACTL Netscape 1.1 Color Names
 
 =head1 SYNOPSIS
 
@@ -34,23 +32,6 @@ L<Graphics::ColorNames::SVG>
 The color names come from L<http://wp.netscape.com/home/bg/colorindex.html>.
 Corrections to errors in the Netscape spec are due to
 L<http://www.he.net/info/color/>.
-
-=head1 AUTHOR
-
-Robert Rothenberg <rrwo at cpan.org>
-
-=head2 Acknowledgements
-
-"Magnus", who pointed out inconsistencies.
-
-Gary Vollink, who suggested color schemes for later Netscape versions,
-and pointed out that the original Netscape page had moved.
-
-=head1 LICENSE
-
-Copyright (c) 2001-2008 Robert Rothenberg. All rights reserved.
-This program is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself.
 
 =cut
 

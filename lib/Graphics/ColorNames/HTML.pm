@@ -1,8 +1,6 @@
 package Graphics::ColorNames::HTML;
 
-=head1 NAME
-
-Graphics::ColorNames::HTML - HTML color names and equivalent RGB values
+# ABSTRACT: HTML color names and equivalent RGB values
 
 =head1 SYNOPSIS
 
@@ -16,7 +14,7 @@ Graphics::ColorNames::HTML - HTML color names and equivalent RGB values
 This module defines color names and their associated RGB values from the
 HTML 4.0 Specification.
 
-=head2 Note
+=head1 KNOWN ISSUES
 
 In versions prior to 1.1, "fuchsia" was misspelled "fuscia". This
 mispelling came from un unidentified HTML specification.  It also
@@ -25,20 +23,10 @@ proper spelling was added.
 
 =head1 SEE ALSO
 
-L<Graphics::ColorNames>,  HTML 4.0 Specificiation <http://www.w3.org>
+L<Graphics::ColorNames>
 
 L<Graphics::ColorNames::SVG>, which uses color names based on the SVG
 specification (which is more recent).
-
-=head1 AUTHOR
-
-Robert Rothenberg <rrwo at cpan.org>
-
-=head1 LICENSE
-
-Copyright (c) 2001-2008 Robert Rothenberg. All rights reserved.
-This program is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself.
 
 =cut
 

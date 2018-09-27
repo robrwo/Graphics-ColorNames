@@ -1,6 +1,8 @@
 package Graphics::ColorNames;
 use 5.006;
 
+# ABSTRACT: defines RGB values for common color names
+
 use base "Exporter";
 
 use strict;
@@ -355,62 +357,6 @@ sub rgb {
 
 __END__
 
-=head1 NAME
-
-Graphics::ColorNames - defines RGB values for common color names
-
-=begin readme
-
-=head1 REQUIREMENTS
-
-C<Graphics::ColorNames> should work on Perl 5.6.0.  It requires the
-following non-core (depending on your Perl version) modules:
-
-  Module::Load
-  Module::Loaded
-
-The following modules are not required for using most features but
-are recommended:
-
-  Color::Library
-  Tie::Sub
-
-L<Installation|/INSTALLATION> requires the following testing modules:
-
-  Test::Exception
-  Test::More
-
-If the C<DEVEL_TESTS> environment variable is set, the tests will also
-use the following modules for running developer tests, if they are
-installed:
-
-  Test::Pod
-  Test::Pod::Coverage
-  Test::Portability::Files
-
-The developer tests are for quality-control purposes.
-
-=head1 INSTALLATION
-
-Installation can be done using the traditional Makefile.PL or the newer
-Build.PL methods.
-
-Using Makefile.PL:
-
-  perl Makefile.PL
-  make test
-  make install
-
-(On Windows platforms you should use C<nmake> instead.)
-
-Using Build.PL (if you have L<Module::Build> installed):
-
-  perl Build.PL
-  perl Build test
-  perl Build install
-
-=end readme
-
 =head1 SYNOPSIS
 
   use Graphics::ColorNames 2.10;
@@ -438,14 +384,6 @@ module that authors can use with other modules to specify colors by
 name; and (2) free module authors from having to "re-invent the wheel"
 whenever they decide to give the users the option of specifying a
 color by name rather than RGB value.
-
-=begin readme
-
-See the module POD for complete documentation.
-
-=end readme
-
-=for readme stop
 
 For example,
 
@@ -708,16 +646,6 @@ Since version 1.03, C<NamesRgbTable> may also return a code reference:
 
 See L<Graphics::ColorNames::GrayScale> for an example.
 
-=head2 Graphics::ColourNames
-
-The alias "Graphics::ColourNames" (British spelling) is no longer available
-as of version 2.01.
-
-It seems absurd to maintain it when all the modules does is provide an
-alternative spelling for the module I<name> without doing anything about
-the component colors of each scheme, and when most other modules
-(and non-Perl software) does not bother with such things.
-
 =head1 SEE ALSO
 
 L<Color::Library> provides an extensive library of color schemes. A notable
@@ -730,55 +658,9 @@ F<rgb.txt> file.
 L<Graphics::ColorObject> can convert between RGB and other color space
 types.
 
+L<Graphics::ColorUtils> can also convert betweeb RGB and other color
+space types, and supports RGB from names in various color schemes.
+
 L<Acme::AutoColor> provides subroutines corresponding to color names.
-
-=begin readme
-
-=head1 REVISION HISTORY
-
-Changes since the last release:
-
-=for readme include file=Changes start=^2.11 stop=^2.04 type=text
-
-More details can be found in the F<Changes> file.
-
-=end readme
-
-=for readme continue
-
-=head1 AUTHOR
-
-Robert Rothenberg <rrwo at cpan.org>
-
-=for readme stop
-
-=head2 Acknowledgements
-
-Alan D. Salewski <alans at cji.com> for feedback and the addition of
-C<tuple2hex>.
-
-Steve Pomeroy <xavier at cpan.org>, "chemboy" <chemboy at perlmonk.org>
-and "magnus" <magnus at mbox604.swipnet.se> who pointed out issues
-with various color schemes.
-
-=head2 Suggestions and Bug Reporting
-
-Feedback is always welcome.  Please use the CPAN Request Tracker at
-L<http://rt.cpan.org> to submit bug reports.
-
-There is a Sourceforge project for this package at
-L<http://sourceforge.net/projects/colornames/>.
-
-If you create additional color schemes, please make them available
-separately in CPAN rather than submit them to me for inclusion into
-this module.
-
-=for readme continue
-
-=head1 LICENSE
-
-Copyright (c) 2001-2008 Robert Rothenberg. All rights reserved.
-This program is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself.
 
 =cut

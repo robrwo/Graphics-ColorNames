@@ -1,8 +1,6 @@
 package Graphics::ColorNames::X;
 
-=head1 NAME
-
-Graphics::ColorNames::X - X-Windows color names and equivalent RGB values
+# ABSTRACT: X-Windows color names and equivalent RGB values
 
 =head1 SYNOPSIS
 
@@ -18,21 +16,7 @@ X-Windows (from the X-Windows C<rgb.txt> file).
 
 =head1 SEE ALSO
 
-L<Graphics::ColorNames>, rgb.txt
-
-=head1 AUTHOR
-
-Robert Rothenberg <rrwo at cpan.org>
-
-=head2 Acknowledgements
-
-Steve Pomeroy <steve_x at earthling.net> -- fixed the broken color definitions
-
-=head1 LICENSE
-
-Copyright (c) 2001-2008 Robert Rothenberg. All rights reserved.
-This program is free software; you can redistribute it and/or
-modify it under the same terms as Perl itself.
+L<Graphics::ColorNames>, F<rgb.txt>
 
 =cut
 
