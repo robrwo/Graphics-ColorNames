@@ -33,7 +33,7 @@ specification (which is more recent).
 use strict;
 use warnings;
 
-our $VERSION = 'v3.0.0';
+our $VERSION = 'v3.0.1';
 
 sub NamesRgbTable() {
   use integer;
