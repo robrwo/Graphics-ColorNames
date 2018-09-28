@@ -1,6 +1,8 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+  [Tests]
+  - Removed unnecessary version tests.
 
 v3.0.0    2018-09-28 00:00:12+01:00 Europe/London
   [Documentation]
