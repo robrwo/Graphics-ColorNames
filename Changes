@@ -10,6 +10,9 @@ Revision history for Graphics-ColorNames:
   [Toolchain]
   - Use newer style of module exports.
 
+  [Other]
+  - Perltidied source.
+
 v3.0.0    2018-09-28 00:00:12+01:00 Europe/London
   [Documentation]
   - Reformated Changes file.

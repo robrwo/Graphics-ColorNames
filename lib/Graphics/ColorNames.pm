@@ -18,14 +18,14 @@ use Module::Loaded;
 our $VERSION = 'v3.0.1';
 
 our %EXPORT_TAGS = (
- 'all'     => [ qw( hex2tuple tuple2hex all_schemes ) ],
- 'utility' => [ qw( hex2tuple tuple2hex ) ],
+    'all'     => [qw( hex2tuple tuple2hex all_schemes )],
+    'utility' => [qw( hex2tuple tuple2hex )],
 );
-our @EXPORT_OK    = ( @{ $EXPORT_TAGS{'all'} } );
-our @EXPORT       = ( );
+our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
+our @EXPORT    = ();
 
 sub VERSION {
-    my ($class, $wanted) = @_;
+    my ( $class, $wanted ) = @_;
     return version->parse($wanted) <= version->parse($VERSION);
 }
 
@@ -35,7 +35,7 @@ sub VERSION {
 
 # If we use AutoLoader, these should be use vars() ?
 
-my %FoundSchemes = ( );
+my %FoundSchemes = ();
 
 # Since 2.10_02, we've added autoloading color names to the object-
 # oriented interface.
@@ -43,178 +43,185 @@ my %FoundSchemes = ( );
 our $AUTOLOAD;
 
 sub AUTOLOAD {
-  $AUTOLOAD =~ /^(.*:)*([\w\_]+)$/;
-  my $name  = $2;
-  my $hex   = (my $self = $_[0])->FETCH($name);
-  if (defined $hex) {
-    return $hex;
-  }
-  else {
-    croak "No method or color named $name";
-    # $AutoLoader::AUTOLOAD = $AUTOLOAD;
-    # goto &AutoLoader::AUTOLOAD;
-  }
+    $AUTOLOAD =~ /^(.*:)*([\w\_]+)$/;
+    my $name = $2;
+    my $hex = ( my $self = $_[0] )->FETCH($name);
+    if ( defined $hex ) {
+        return $hex;
+    }
+    else {
+        croak "No method or color named $name";
+
+        # $AutoLoader::AUTOLOAD = $AUTOLOAD;
+        # goto &AutoLoader::AUTOLOAD;
+    }
 }
 
-
 sub _load {
-  while(my $module = shift) {
-    unless (is_loaded($module)) {
-      load($module);
-      mark_as_loaded($module) unless (is_loaded($module));
+    while ( my $module = shift ) {
+        unless ( is_loaded($module) ) {
+            load($module);
+            mark_as_loaded($module) unless ( is_loaded($module) );
+        }
     }
-  }
 }
 
 # TODO - see if using Tie::Hash::Layered gives an improvement
 
 sub _load_scheme_from_module {
-  my $self = shift;
-  my $base = __PACKAGE__;
+    my $self = shift;
+    my $base = __PACKAGE__;
 
-  my $module = join('::', $base, (my $scheme = shift));
-  eval { _load($module); };
-  if ($@) {
-    eval { _load($module = $scheme); };
+    my $module = join( '::', $base, ( my $scheme = shift ) );
+    eval { _load($module); };
     if ($@) {
-      croak "Cannot load color naming scheme \`$module\'";
+        eval { _load( $module = $scheme ); };
+        if ($@) {
+            croak "Cannot load color naming scheme \`$module\'";
+        }
     }
-  }
 
-  {
-    no strict 'refs';
-    if ($module =~ $base) {
-	$self->load_scheme($module->NamesRgbTable);
+    {
+        no strict 'refs';
+        if ( $module =~ $base ) {
+            $self->load_scheme( $module->NamesRgbTable );
+        }
+        elsif ( $module =~ /Color::Library::Dictionary/ ) {
+            $self->load_scheme( $module->_load_color_list );
+        }
+        else {
+            croak "Unknown scheme type: $module";
+        }
     }
-    elsif ($module =~ /Color::Library::Dictionary/) {
-	$self->load_scheme($module->_load_color_list);
-    }
-    else {
-	croak "Unknown scheme type: $module";
-    }
-  }
 }
 
 sub TIEHASH {
-  my $class = shift || __PACKAGE__;
-  my $self  = {
-   _schemes  => [ ],
-   _iterator => 0,
-  };
+    my $class = shift || __PACKAGE__;
+    my $self = {
+        _schemes  => [],
+        _iterator => 0,
+    };
 
-  bless $self, $class;
+    bless $self, $class;
 
-  if (@_) {
-    foreach my $scheme (@_) {
-      if (ref $scheme) {
-	$self->load_scheme( $scheme );
-      }
-      elsif (-r $scheme) {
-	$self->_load_scheme_from_file( $scheme );
-      }
-      else {
-	$self->_load_scheme_from_module( $scheme );
-      }
+    if (@_) {
+        foreach my $scheme (@_) {
+            if ( ref $scheme ) {
+                $self->load_scheme($scheme);
+            }
+            elsif ( -r $scheme ) {
+                $self->_load_scheme_from_file($scheme);
+            }
+            else {
+                $self->_load_scheme_from_module($scheme);
+            }
+        }
     }
-  } else {
-    $self->_load_scheme_from_module('X');
-  }
+    else {
+        $self->_load_scheme_from_module('X');
+    }
 
-  return $self;
+    return $self;
 }
 
 sub FETCH {
-  my $self   = shift;
-  my $key    = lc(shift||"");
+    my $self = shift;
+    my $key = lc( shift || "" );
 
-  # If we're passing it an RGB value, return that value
+    # If we're passing it an RGB value, return that value
 
-  if ($key =~ m/^\x23?([\da-f]{6})$/) {
-    return $1;
-  } else {
+    if ( $key =~ m/^\x23?([\da-f]{6})$/ ) {
+        return $1;
+    }
+    else {
 
-      $key =~ s/[^a-z\d\%]//g; # ignore non-word characters
+        $key =~ s/[^a-z\d\%]//g;    # ignore non-word characters
 
-      my $val = undef;
-      my $i   = 0;
-      while ((!defined $val) && ($i < @{$self->{_schemes}})) {
-	  $val = $self->{_schemes}->[$i++]->{$key};
-      }
+        my $val = undef;
+        my $i   = 0;
+        while ( ( !defined $val ) && ( $i < @{ $self->{_schemes} } ) ) {
+            $val = $self->{_schemes}->[ $i++ ]->{$key};
+        }
 
-      if (defined $val) {
- 	  return sprintf('%06x', $val ), ;
-      } else {
- 	  return;
-      }
-  }
+        if ( defined $val ) {
+            return sprintf( '%06x', $val ),;
+        }
+        else {
+            return;
+        }
+    }
 }
 
 sub EXISTS {
-  my ($self, $key) = @_;
-  defined ($self->FETCH($key));
+    my ( $self, $key ) = @_;
+    defined( $self->FETCH($key) );
 }
 
 sub FIRSTKEY {
-  (my $self = shift)->{_iterator} = 0;
-  each %{$self->{_schemes}->[$self->{_iterator}]};
+    ( my $self = shift )->{_iterator} = 0;
+    each %{ $self->{_schemes}->[ $self->{_iterator} ] };
 }
 
 sub NEXTKEY {
-  my $self = shift;
-  my ($key, $val)  = each %{$self->{_schemes}->[$self->{_iterator}]};
-  unless (defined $key) {
-      ($key, $val)  = each %{$self->{_schemes}->[++$self->{_iterator}]};
-  }
-  return $key;
+    my $self = shift;
+    my ( $key, $val ) = each %{ $self->{_schemes}->[ $self->{_iterator} ] };
+    unless ( defined $key ) {
+        ( $key, $val ) = each %{ $self->{_schemes}->[ ++$self->{_iterator} ] };
+    }
+    return $key;
 }
 
 sub load_scheme {
-  my $self   = shift;
-  my $scheme = shift;
+    my $self   = shift;
+    my $scheme = shift;
 
-  if (ref($scheme) eq "HASH") {
-      push @{$self->{_schemes}}, $scheme;
-  }
-  elsif (ref($scheme) eq "CODE") {
-      _load("Tie::Sub");
-      push @{$self->{_schemes}}, { };
-      tie %{$self->{_schemes}->[-1]}, 'Tie::Sub', $scheme;
-  }
-  elsif (ref($scheme) eq "ARRAY") {
-      # assumes these are Color::Library::Dictionary 0.02 files
-      my $s = { };
-      foreach my $rec (@$scheme) {
-	  my $key  =  $rec->[0];
-	  my $name =  $rec->[1];
-	  my $code =  $rec->[5];
-	  $name    =~ s/[\W\_]//g; # ignore non-word characters
-	  $s->{$name} = $code unless (exists $s->{$name});
-	  if ($key =~ /^(.+\:.+)\.(\d+)$/) {
-	      $s->{"$name$2"} = $code;
-	  }
-      }
-      push @{$self->{_schemes}}, $s;
-  }
-  else {
-    # TODO - use Exception
-    undef $!;
-    eval {
-      if ((ref($scheme) eq 'GLOB')
-         || ref($scheme) eq "IO::File"   || $scheme->isa('IO::File')
-         || ref($scheme) eq "FileHandle" || $scheme->isa('FileHandle')) {
-	$self->_load_scheme_from_file($scheme);
-      }
-    };
-    if ($@) {
-      croak "Error $@ on scheme type ", ref($scheme);
+    if ( ref($scheme) eq "HASH" ) {
+        push @{ $self->{_schemes} }, $scheme;
     }
-    elsif ($!) {
-      croak "$!";
+    elsif ( ref($scheme) eq "CODE" ) {
+        _load("Tie::Sub");
+        push @{ $self->{_schemes} }, {};
+        tie %{ $self->{_schemes}->[-1] }, 'Tie::Sub', $scheme;
+    }
+    elsif ( ref($scheme) eq "ARRAY" ) {
+
+        # assumes these are Color::Library::Dictionary 0.02 files
+        my $s = {};
+        foreach my $rec (@$scheme) {
+            my $key  = $rec->[0];
+            my $name = $rec->[1];
+            my $code = $rec->[5];
+            $name =~ s/[\W\_]//g;    # ignore non-word characters
+            $s->{$name} = $code unless ( exists $s->{$name} );
+            if ( $key =~ /^(.+\:.+)\.(\d+)$/ ) {
+                $s->{"$name$2"} = $code;
+            }
+        }
+        push @{ $self->{_schemes} }, $s;
     }
     else {
-	# everything is ok?
+        # TODO - use Exception
+        undef $!;
+        eval {
+            if (   ( ref($scheme) eq 'GLOB' )
+                || ref($scheme) eq "IO::File"
+                || $scheme->isa('IO::File')
+                || ref($scheme) eq "FileHandle"
+                || $scheme->isa('FileHandle') )
+            {
+                $self->_load_scheme_from_file($scheme);
+            }
+        };
+        if ($@) {
+            croak "Error $@ on scheme type ", ref($scheme);
+        }
+        elsif ($!) {
+            croak "$!";
+        }
+        else {
+            # everything is ok?
+        }
     }
-  }
 }
 
 sub _find_schemes {
@@ -224,39 +231,40 @@ sub _find_schemes {
     # BUG: deep-named schemes such as Graphics::ColorNames::Foo::Bar
     # are not supported.
 
-    if (-d $path) {
-      my $dh = DirHandle->new( $path )
-	|| croak "Unable to access directory $path";
-      while (defined(my $fn = $dh->read)) {
-	if ((-r File::Spec->catdir($path, $fn)) && ($fn =~ /(.+)\.pm$/)) {
-	  $FoundSchemes{$1}++;
-	}
-      }
+    if ( -d $path ) {
+        my $dh = DirHandle->new($path)
+          || croak "Unable to access directory $path";
+        while ( defined( my $fn = $dh->read ) ) {
+            if (   ( -r File::Spec->catdir( $path, $fn ) )
+                && ( $fn =~ /(.+)\.pm$/ ) )
+            {
+                $FoundSchemes{$1}++;
+            }
+        }
     }
-  }
+}
 
 sub _readonly_error {
-  croak "Cannot modify a read-only value";
+    croak "Cannot modify a read-only value";
 }
 
 sub DESTROY {
-  my $self = shift;
-  delete $self->{_schemes};
-  delete $self->{_iterator};
+    my $self = shift;
+    delete $self->{_schemes};
+    delete $self->{_iterator};
 }
 
-sub UNTIE {             # stub to avoid AUTOLOAD
+sub UNTIE {    # stub to avoid AUTOLOAD
 }
 
 BEGIN {
-  no strict 'refs';
-  *STORE  = \ &_readonly_error;
-  *DELETE = \ &_readonly_error;
-  *CLEAR  = \ &_readonly_error; # causes problems with 'undef'
+    no strict 'refs';
+    *STORE  = \&_readonly_error;
+    *DELETE = \&_readonly_error;
+    *CLEAR  = \&_readonly_error;    # causes problems with 'undef'
 
-  *new    = \ &TIEHASH;
+    *new = \&TIEHASH;
 }
-
 
 1;
 
@@ -266,100 +274,99 @@ BEGIN {
 # RGB values
 
 sub hex2tuple {
-  my $rgb = CORE::hex( shift );
-  my ($red, $green, $blue);
-  $blue  = ($rgb & 0x0000ff);
-  $green = ($rgb & 0x00ff00) >> 8;
-  $red   = ($rgb & 0xff0000) >> 16;
-  return ($red, $green, $blue);
+    my $rgb = CORE::hex(shift);
+    my ( $red, $green, $blue );
+    $blue  = ( $rgb & 0x0000ff );
+    $green = ( $rgb & 0x00ff00 ) >> 8;
+    $red   = ( $rgb & 0xff0000 ) >> 16;
+    return ( $red, $green, $blue );
 }
-
 
 # Convert list of RGB values to 6-digit hexidecimal code (used for HTML, etc.)
 
 sub tuple2hex {
-  my ($red, $green, $blue) = @_;
-  my $rgb = sprintf "%.2x%.2x%.2x", $red, $green, $blue;
-  return $rgb;
+    my ( $red, $green, $blue ) = @_;
+    my $rgb = sprintf "%.2x%.2x%.2x", $red, $green, $blue;
+    return $rgb;
 }
 
 sub all_schemes {
     unless (%FoundSchemes) {
 
-      _load("DirHandle", "File::Spec");
+        _load( "DirHandle", "File::Spec" );
 
-      foreach my $dir (@INC) {
-	_find_schemes(
-	  File::Spec->catdir($dir, split(/::/, __PACKAGE__)));
-      }
+        foreach my $dir (@INC) {
+            _find_schemes(
+                File::Spec->catdir( $dir, split( /::/, __PACKAGE__ ) ) );
+        }
     }
-    return (keys %FoundSchemes);
-  }
-
-sub _load_scheme_from_file {
-  my $self = shift;
-  my $file = shift;
-
-  unless (ref $file) {
-    unless (-r $file) {
-      croak "Cannot load scheme from file: \'$file\'";
-    }
-    _load("IO::File");
-  }
-
-  my $fh = ref($file) ? $file : (IO::File->new);
-  unless (ref $file) {
-    open($fh, $file)
-      || croak "Cannot open file: \'$file\'";
-  }
-
-  my $scheme = { };
-
-  while (my $line = <$fh>) {
-      chomp($line);
-      $line =~ s/[\!\#].*$//;
-      if ($line ne "") {
-	my $name  = lc(substr($line, 12));
-	$name     =~ s/[\W]//g; # remove anything that isn't a letter or number
-
-	croak "Missing color name",
-	  unless ($name ne "");
-
-	# TODO? Should we add an option to warn if overlapping names
-	# are defined? This seems to be too common to be useful.
-
-	# unless (exists $scheme->{$name}) {
-
- 	  $scheme->{$name} = 0;
-	  foreach (0, 4, 8) {
-	      $scheme->{$name} <<= 8;
-	      $scheme->{$name}  |= (eval substr($line,  $_, 3));
-	  }
-
-	# }
-      }
-  }
-  $self->load_scheme( $scheme );
-
-  unless (ref $file) {
-    close $fh;
-  }
+    return ( keys %FoundSchemes );
 }
 
+sub _load_scheme_from_file {
+    my $self = shift;
+    my $file = shift;
+
+    unless ( ref $file ) {
+        unless ( -r $file ) {
+            croak "Cannot load scheme from file: \'$file\'";
+        }
+        _load("IO::File");
+    }
+
+    my $fh = ref($file) ? $file : ( IO::File->new );
+    unless ( ref $file ) {
+        open( $fh, $file )
+          || croak "Cannot open file: \'$file\'";
+    }
+
+    my $scheme = {};
+
+    while ( my $line = <$fh> ) {
+        chomp($line);
+        $line =~ s/[\!\#].*$//;
+        if ( $line ne "" ) {
+            my $name = lc( substr( $line, 12 ) );
+            $name =~ s/[\W]//g;  # remove anything that isn't a letter or number
+
+            croak "Missing color name",
+              unless ( $name ne "" );
+
+            # TODO? Should we add an option to warn if overlapping names
+            # are defined? This seems to be too common to be useful.
+
+            # unless (exists $scheme->{$name}) {
+
+            $scheme->{$name} = 0;
+            foreach ( 0, 4, 8 ) {
+                $scheme->{$name} <<= 8;
+                $scheme->{$name} |= ( eval substr( $line, $_, 3 ) );
+            }
+
+            # }
+        }
+    }
+    $self->load_scheme($scheme);
+
+    unless ( ref $file ) {
+        close $fh;
+    }
+}
 
 sub hex {
     my $self = shift;
-    my $rgb  = $self->FETCH(my $name = shift);
+    my $rgb  = $self->FETCH( my $name = shift );
     my $pre  = shift || "";
-    return ($pre.$rgb);
+    return ( $pre . $rgb );
 }
 
 sub rgb {
     my $self = shift;
-    my @rgb  = hex2tuple($self->FETCH(my $name = shift));
-    my $sep  = shift || ','; # (*)
-    return wantarray ? @rgb : join($sep,@rgb);
-# (*) A possible bug, if one uses "0" as a separator. But this is not likely
+    my @rgb  = hex2tuple( $self->FETCH( my $name = shift ) );
+    my $sep  = shift || ',';                                    # (*)
+    return wantarray ? @rgb : join( $sep, @rgb );
+
+    # (*) A possible bug, if one uses "0" as a separator. But this is not likely
 }
 
 __END__
