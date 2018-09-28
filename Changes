@@ -1,6 +1,9 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+  [Documentation]
+  - Added omitted Changes to v3.0.0.
+
   [Tests]
   - Removed unnecessary version tests.
 
@@ -16,6 +19,9 @@ v3.0.0    2018-09-28 00:00:12+01:00 Europe/London
   - Removed outdated sections from POD.
 
   - Added additional module(s) to SEE ALSO section.
+
+  [Tests]
+  - Removed QA tests that are handled by Dist::Zilla.
 
   [Toolchain]
   - Use Dist::Zilla to build distribution.
