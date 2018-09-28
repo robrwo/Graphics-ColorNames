@@ -3,10 +3,12 @@ use 5.006;
 
 # ABSTRACT: defines RGB values for common color names
 
-use base "Exporter";
-
 use strict;
 use warnings;
+
+use version;
+
+use Exporter qw/ import /;
 
 # use AutoLoader;
 use Carp;
@@ -21,6 +23,11 @@ our %EXPORT_TAGS = (
 );
 our @EXPORT_OK    = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT       = ( );
+
+sub VERSION {
+    my ($class, $wanted) = @_;
+    return version->parse($wanted) <= version->parse($VERSION);
+}
 
 # We store Schemes in a hash as a quick-and-dirty way to filter
 # duplicates (which sometimes occur when directories are repeated in

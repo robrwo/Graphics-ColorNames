@@ -4,6 +4,9 @@ Revision history for Graphics-ColorNames:
   [Tests]
   - Removed unnecessary version tests.
 
+  [Toolchain]
+  - Use newer style of module exports.
+
 v3.0.0    2018-09-28 00:00:12+01:00 Europe/London
   [Documentation]
   - Reformated Changes file.

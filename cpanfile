@@ -1,6 +1,8 @@
+requires "Exporter" => "5.57";
 requires "Module::Load" => "0.10";
 requires "Module::Loaded" => "0";
 requires "perl" => "5.006";
+requires "version" => "0";
 
 on 'test' => sub {
   requires "File::Spec" => "0";
