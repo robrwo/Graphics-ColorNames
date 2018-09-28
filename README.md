@@ -351,6 +351,10 @@ space types, and supports RGB from names in various color schemes.
 The development version is on github at [https://github.com/robrwo/Graphics-ColorNames](https://github.com/robrwo/Graphics-ColorNames)
 and may be cloned from [git://github.com/robrwo/Graphics-ColorNames.git](git://github.com/robrwo/Graphics-ColorNames.git)
 
+The SourceForge project for this module at
+[http://sourceforge.net/projects/colornames/](http://sourceforge.net/projects/colornames/) is no longer
+maintained.
+
 # BUGS
 
 Please report any bugs or feature requests on the bugtracker website

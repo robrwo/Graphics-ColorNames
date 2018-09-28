@@ -5,6 +5,8 @@ Revision history for Graphics-ColorNames:
   [Documentation]
   - Identify how to report bugs.
 
+  - Add note about the old SourceForge project for this module.
+
   [Other]
   - Tagged release with the RT bug database.
 

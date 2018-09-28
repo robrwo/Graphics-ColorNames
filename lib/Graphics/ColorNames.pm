@@ -677,4 +677,10 @@ space types, and supports RGB from names in various color schemes.
 
 L<Acme::AutoColor> provides subroutines corresponding to color names.
 
+=head1 append:SOURCE
+
+The SourceForge project for this module at
+L<http://sourceforge.net/projects/colornames/> is no longer
+maintained.
+
 =cut
