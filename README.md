@@ -351,6 +351,17 @@ space types, and supports RGB from names in various color schemes.
 The development version is on github at [https://github.com/robrwo/Graphics-ColorNames](https://github.com/robrwo/Graphics-ColorNames)
 and may be cloned from [git://github.com/robrwo/Graphics-ColorNames.git](git://github.com/robrwo/Graphics-ColorNames.git)
 
+# BUGS
+
+Please report any bugs or feature requests on the bugtracker website
+[https://rt.cpan.org/Public/Dist/Display.html?Name=Graphics-ColorNames](https://rt.cpan.org/Public/Dist/Display.html?Name=Graphics-ColorNames) or
+by email to
+[bug-Graphics-ColorNames@rt.cpan.org](mailto:bug-Graphics-ColorNames@rt.cpan.org).
+
+When submitting a bug or request, please include a test-file or a
+patch to an existing test-file that illustrates the bug or desired
+feature.
+
 # AUTHOR
 
 Robert Rothenberg <rrwo@cpan.org>
