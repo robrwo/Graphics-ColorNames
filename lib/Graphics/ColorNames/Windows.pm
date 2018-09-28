@@ -23,7 +23,7 @@ C<Graphics::ColorNames>
 use strict;
 use warnings;
 
-our $VERSION = 'v3.0.2';
+our $VERSION = 'v3.0.3';
 
 sub NamesRgbTable() {
     use integer;
