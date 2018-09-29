@@ -1,6 +1,8 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+  [Documentation]
+  - Use modern syntax in some of the examples.
 
 v3.0.2    2018-09-28 17:54:49+01:00 Europe/London
 

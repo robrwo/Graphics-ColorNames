@@ -375,7 +375,7 @@ __END__
 
   use Graphics::ColorNames 2.10;
 
-  $po = new Graphics::ColorNames(qw( X ));
+  $po = Graphics::ColorNames->new( qw[ X ] );
 
   $rgb = $po->hex('green');          # returns '00ff00'
   $rgb = $po->hex('green', '0x');    # returns '0x00ff00'
@@ -386,7 +386,7 @@ __END__
 
   $rgb = $po->green;                 # same as $po->hex('green');
 
-  tie %ph, 'Graphics::ColorNames', (qw( X ));
+  tie %ph, 'Graphics::ColorNames', (qw[ X ]);
 
   $rgb = $ph{green};                 # same as $po->hex('green');
 
@@ -405,7 +405,7 @@ For example,
 
   use GD;
 
-  $pal = new Graphics::ColorNames;
+  $pal = Graphics::ColorNames->new;
 
   $img = new GD::Image(100, 100);
 
