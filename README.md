@@ -11,7 +11,7 @@ version v3.1.0
 ```perl
 use Graphics::ColorNames 2.10;
 
-$po = new Graphics::ColorNames(qw( X ));
+$po = Graphics::ColorNames->new( qw[ X ] );
 
 $rgb = $po->hex('green');          # returns '00ff00'
 $rgb = $po->hex('green', '0x');    # returns '0x00ff00'
@@ -22,7 +22,7 @@ $rgb = $po->rgb('green');          # returns '0,255,0'
 
 $rgb = $po->green;                 # same as $po->hex('green');
 
-tie %ph, 'Graphics::ColorNames', (qw( X ));
+tie %ph, 'Graphics::ColorNames', (qw[ X ]);
 
 $rgb = $ph{green};                 # same as $po->hex('green');
 ```
@@ -43,7 +43,7 @@ use Graphics::ColorNames 2.10;
 
 use GD;
 
-$pal = new Graphics::ColorNames;
+$pal = Graphics::ColorNames->new;
 
 $img = new GD::Image(100, 100);
 
@@ -98,11 +98,11 @@ This is an experimental feature which may change in later versions (see
 Multiple schemes can be used:
 
 ```
-tie %pal, 'Graphics::ColorNames', qw(HTML Netscape);
+tie %pal, 'Graphics::ColorNames', qw(HTML X);
 ```
 
-In this case, if the name is not a valid HTML color, the Netscape name
-will be used.
+In this case, if the name is not a valid HTML color, the X-windows
+name will be used.
 
 One can load all available schemes in the Graphics::ColorNames namespace
 (as of version 2.0):
@@ -249,25 +249,20 @@ The following schemes are available by default:
     names are also used with older CSS and SVG specifications. (You may
     want to see [Graphics::ColorNames::SVG](https://metacpan.org/pod/Graphics::ColorNames::SVG) for a complete list.)
 
-- Netscape
-
-    100 color names names associated Netscape 1.1 (I cannot determine whether
-    they were once usable in Netscape or were arbitrary names for RGB values--
-    many of these names are not recognized by later versions of Netscape).
-
-    This scheme may be deprecated in future versions, but available as a
-    separate module.
-
 - Windows
 
     16 commom color names used with Microsoft Windows and related
     products.  These are actually the same colors as the ["HTML"](#html) scheme,
     although with different names.
 
+Note that the [Graphics::ColorNames::Netscape](https://metacpan.org/pod/Graphics::ColorNames::Netscape) scheme is no longer
+included with this distribution. If you need it, you should install it
+separately.
+
 Rather than a color scheme, the path or open filehandle for a
 `rgb.txt` file may be specified.
 
-Additional color schemes may be available on CPAN.
+Additional color schemes are available on CPAN.
 
 ## Custom Color Schemes
 
@@ -375,7 +370,7 @@ Robert Rothenberg <rrwo@cpan.org>
 - Alan D. Salewski <alans@cji.com>
 - Steve Pomeroy <xavier@cpan.org>
 - "chemboy" <chemboy@perlmonk.org>
-- "magnus" <magnus@mbox604.swipnet.se>
+- Magnus Cedergren <magnus@mbox604.swipnet.se>
 - Gary Vollink <gary@vollink.com>
 
 # COPYRIGHT AND LICENSE
