@@ -14,6 +14,9 @@ package Graphics::ColorNames::HTML;
 This module defines color names and their associated RGB values from the
 HTML 4.0 Specification.
 
+This module is deprecated, and will be split into a separate
+distribution.  You should use L<Graphics::ColorNames::WWW> instead.
+
 =head1 KNOWN ISSUES
 
 In versions prior to 1.1, "fuchsia" was misspelled "fuscia". This
@@ -24,9 +27,6 @@ proper spelling was added.
 =head1 SEE ALSO
 
 L<Graphics::ColorNames>
-
-L<Graphics::ColorNames::SVG>, which uses color names based on the SVG
-specification (which is more recent).
 
 =cut
 
