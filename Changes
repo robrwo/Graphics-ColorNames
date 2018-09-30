@@ -1,6 +1,10 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+  [Incompatabilities]
+  - The Netscape color scheme has been split out into a separate
+    release.
+
   [Documentation]
   - Use modern syntax in some of the examples.
 

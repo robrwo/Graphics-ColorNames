@@ -450,10 +450,10 @@ L</SEE ALSO> for a discussion of the differences between modules).
 
 Multiple schemes can be used:
 
-  tie %pal, 'Graphics::ColorNames', qw(HTML Netscape);
+  tie %pal, 'Graphics::ColorNames', qw(HTML X);
 
-In this case, if the name is not a valid HTML color, the Netscape name
-will be used.
+In this case, if the name is not a valid HTML color, the X-windows
+name will be used.
 
 One can load all available schemes in the Graphics::ColorNames namespace
 (as of version 2.0):
@@ -584,15 +584,6 @@ duplicate names with spaces).
 names are also used with older CSS and SVG specifications. (You may
 want to see L<Graphics::ColorNames::SVG> for a complete list.)
 
-=item Netscape
-
-100 color names names associated Netscape 1.1 (I cannot determine whether
-they were once usable in Netscape or were arbitrary names for RGB values--
-many of these names are not recognized by later versions of Netscape).
-
-This scheme may be deprecated in future versions, but available as a
-separate module.
-
 =item Windows
 
 16 commom color names used with Microsoft Windows and related
@@ -601,10 +592,14 @@ although with different names.
 
 =back
 
+Note that the L<Graphics::ColorNames::Netscape> scheme is no longer
+included with this distribution. If you need it, you should install it
+separately.
+
 Rather than a color scheme, the path or open filehandle for a
 F<rgb.txt> file may be specified.
 
-Additional color schemes may be available on CPAN.
+Additional color schemes are available on CPAN.
 
 =head2 Custom Color Schemes
 

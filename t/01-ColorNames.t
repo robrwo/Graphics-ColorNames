@@ -2,18 +2,17 @@
 
 use strict;
 
-use Test::More tests => 54;
+use Test::More;
 use Test::Exception;
 
 use_ok( 'Graphics::ColorNames', '2.10', qw( hex2tuple tuple2hex all_schemes ) );
 
 {
     my %schemes = map { $_ => 1, } all_schemes();
-    ok( ( keys %schemes ) >= 4 );    # Windows, Netscape, HTML, and X
+    ok( ( keys %schemes ) >= 3 );    # Windows, HTML, and X
     ok( $schemes{X} );
     ok( $schemes{HTML} );
     ok( $schemes{Windows} );
-    ok( $schemes{Netscape} );
 }
 
 tie my %colors, 'Graphics::ColorNames';
@@ -98,3 +97,5 @@ ok( !exists $colors{NonExistentColorName} );
 my $colorobj = tied(%colors);
 $colorobj->load_scheme( { nonexistentcolorname => 0x123456 } );
 ok( $colors{NonExistentColorName} eq '123456' );
+
+done_testing;
