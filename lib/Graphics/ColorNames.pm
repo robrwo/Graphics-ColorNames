@@ -130,12 +130,12 @@ sub FETCH {
 
     # If we're passing it an RGB value, return that value
 
-    if ( $key =~ m/^\x23?([\da-f]{6})$/ ) {
+    if ( $key =~ m/^\x23?([0-9a-f]{6})$/ ) {
         return $1;
     }
     else {
 
-        $key =~ s/[^a-z\d\%]//g;    # ignore non-word characters
+        $key =~ s/[^0-9a-z\%]//g;    # ignore non-word characters
 
         my $val = undef;
         my $i   = 0;
@@ -193,7 +193,7 @@ sub load_scheme {
             my $code = $rec->[5];
             $name =~ s/[\W\_]//g;    # ignore non-word characters
             $s->{$name} = $code unless ( exists $s->{$name} );
-            if ( $key =~ /^(.+\:.+)\.(\d+)$/ ) {
+            if ( $key =~ /^(.+\:.+)\.([0-9]+)$/ ) {
                 $s->{"$name$2"} = $code;
             }
         }

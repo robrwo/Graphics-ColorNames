@@ -4,6 +4,9 @@ Revision history for Graphics-ColorNames:
   [Documentation]
   - Added note that the HTML color scheme is deprecated.
 
+  [Bug Fixes]
+  - Regexes test for ASCII digits only.
+
 v3.1.0    2018-09-30 13:37:11+01:00 Europe/London
   [Incompatabilities]
   - The Netscape color scheme has been split out into a separate
