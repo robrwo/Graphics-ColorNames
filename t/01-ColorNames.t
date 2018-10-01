@@ -70,22 +70,21 @@ foreach my $rgb (
 
 # Test using multiple schemes, with issues in overlapping
 
-tie my %colors2, 'Graphics::ColorNames', qw( X Netscape );
+tie my %colors2, 'Graphics::ColorNames', qw( X HTML );
 
 ok( !exists $colors{Silver} );     # Silver doesn't exist in X
-ok( defined $colors2{Silver} );    #      It does in Netscape
+ok( defined $colors2{Silver} );    #      It does in HTML
+
+
+tie my %colors3, 'Graphics::ColorNames', qw( X Windows );
+
+tie my %colors4, 'Graphics::ColorNames', qw( Windows X );
 
 # Test precedence
 
 ok( $colors{DarkGreen} eq '006400' );     # DarkGreen in X
-ok( $colors2{DarkGreen} eq '006400' );    # DarkGreen in X
-ok( $colors2{DarkGreen} ne '2f4f2f' );    # DarkGreen in Netscape
-
-tie my %colors3, 'Graphics::ColorNames', qw( Netscape X );
-
-ok( $colors{Brown} eq 'a52a2a' );         # Brown in X
-ok( $colors2{Brown} eq 'a52a2a' );        # Brown in X (don't try Netscape)
-ok( $colors3{Brown} eq 'a62a2a' );        # Brown in Netscape (don't try X)
+ok( $colors3{DarkGreen} eq '006400' );    # DarkGreen in X
+ok( $colors4{DarkGreen} eq '008000' );    # DarkGreen in Windows
 
 # Test handling of non-existent color names
 
