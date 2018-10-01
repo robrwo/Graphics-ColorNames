@@ -1,6 +1,8 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+
+v3.1.2    2018-10-01 23:14:34+01:00 Europe/London
   [Tests]
   - Removed dependency on GCN::Netscape, RT 127258.
 
