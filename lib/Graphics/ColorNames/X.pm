@@ -23,7 +23,7 @@ L<Graphics::ColorNames>, F<rgb.txt>
 use strict;
 use warnings;
 
-our $VERSION = 'v3.1.3';
+our $VERSION = 'v3.2.0';
 
 # Original name and colors (v1.01 and earlier) from Kevin J. Walsh,
 # http://eies.njit.edu/~walsh/rgb.html
