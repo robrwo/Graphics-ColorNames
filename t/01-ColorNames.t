@@ -72,9 +72,8 @@ foreach my $rgb (
 
 tie my %colors2, 'Graphics::ColorNames', qw( X HTML );
 
-ok( !exists $colors{Silver} );     # Silver doesn't exist in X
-ok( defined $colors2{Silver} );    #      It does in HTML
-
+ok( !exists $colors{fuscia} );     # mispelling doesn't exist in X
+ok( defined $colors2{fuscia} );    #      It does in HTML
 
 tie my %colors3, 'Graphics::ColorNames', qw( X Windows );
 

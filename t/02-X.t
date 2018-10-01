@@ -9,7 +9,7 @@ use_ok( 'Graphics::ColorNames', 2.1002, qw( hex2tuple tuple2hex ) );
 tie my %colors, 'Graphics::ColorNames', 'X';
 ok( tied %colors );
 
-ok( keys %colors == 665 );    #
+is( scalar(keys %colors), 676 );    #
 
 my $count = 0;
 foreach my $name ( keys %colors ) {

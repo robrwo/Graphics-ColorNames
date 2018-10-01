@@ -1,6 +1,8 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+  [Enhancements]
+  - GCN::X color scheme updated to 2014-07-06 version.
 
 v3.1.2    2018-10-01 23:14:34+01:00 Europe/London
   [Tests]
