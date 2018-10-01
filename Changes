@@ -1,6 +1,8 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+
+v3.1.1    2018-10-01 17:49:09+01:00 Europe/London
   [Documentation]
   - Added note that the HTML color scheme is deprecated.
 
