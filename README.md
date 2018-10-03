@@ -375,6 +375,7 @@ Robert Rothenberg <rrwo@cpan.org>
 - "chemboy" <chemboy@perlmonk.org>
 - Magnus Cedergren <magnus@mbox604.swipnet.se>
 - Gary Vollink <gary@vollink.com>
+- Claus Färber <cfaerber@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
