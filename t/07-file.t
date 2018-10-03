@@ -2,7 +2,8 @@
 
 use strict;
 
-use Test::Most;
+use Test::More;
+use Test::Exception;
 
 use File::Spec::Functions qw/ rel2abs /;
 
