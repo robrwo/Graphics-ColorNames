@@ -130,7 +130,7 @@ sub FETCH {
 
     # If we're passing it an RGB value, return that value
 
-    if ( $key =~ m/^\x23?([0-9a-f]{6})$/ ) {
+    if ( $key =~ m/^(?:\x23|0x)?([0-9a-f]{6})$/ ) {
         return $1;
     }
     else {

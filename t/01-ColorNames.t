@@ -65,6 +65,7 @@ foreach my $rgb (
   )
 {
     ok( $colors{ "\x23" . $rgb } eq lc($rgb) );
+    ok( $colors{ "0x" . $rgb } eq lc($rgb) );
     ok( $colors{$rgb} eq lc($rgb) );
 }
 

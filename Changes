@@ -4,6 +4,10 @@ Revision history for Graphics-ColorNames:
   [Enhancements]
   - GCN::X color scheme updated to 2014-07-06 version.
 
+  [Bug Fixes]
+  - Pass through RGB hexidecimals prefixed by "0x", as claimed
+    by the documentation.
+
 v3.1.2    2018-10-01 23:14:34+01:00 Europe/London
   [Tests]
   - Removed dependency on GCN::Netscape, RT 127258.
