@@ -12,6 +12,7 @@ use Exporter qw/ import /;
 
 # use AutoLoader;
 use Carp;
+use File::Spec::Functions qw/ file_name_is_absolute /;
 use Module::Load 0.10;
 use Module::Loaded;
 
@@ -69,29 +70,26 @@ sub _load {
 # TODO - see if using Tie::Hash::Layered gives an improvement
 
 sub _load_scheme_from_module {
-    my $self = shift;
-    my $base = __PACKAGE__;
+    my ($self, $scheme) = @_;
 
-    my $module = join( '::', $base, ( my $scheme = shift ) );
+    my $module =
+        $scheme =~ /^\+/ ? substr( $scheme, 1 )
+      : $scheme =~ /^Color::Library::Dictionary::/ ? $scheme
+      :   __PACKAGE__ . '::' . $scheme;
+
     eval { _load($module); };
     if ($@) {
-        eval { _load( $module = $scheme ); };
-        if ($@) {
-            croak "Cannot load color naming scheme \`$module\'";
-        }
+        croak "Cannot load color naming scheme module $module";
     }
 
-    {
-        no strict 'refs';
-        if ( $module =~ $base ) {
-            $self->load_scheme( $module->NamesRgbTable );
-        }
-        elsif ( $module =~ /Color::Library::Dictionary/ ) {
-            $self->load_scheme( $module->_load_color_list );
-        }
-        else {
-            croak "Unknown scheme type: $module";
-        }
+    if ($module->can('NamesRgbTable')) {
+        $self->load_scheme( $module->NamesRgbTable );
+    }
+    elsif ($module->can('_load_color_list')) {
+        $self->load_scheme( $module->_load_color_list );
+    }
+    else {
+        croak "Unknown scheme type: $module";
     }
 }
 
@@ -109,11 +107,14 @@ sub TIEHASH {
             if ( ref $scheme ) {
                 $self->load_scheme($scheme);
             }
-            elsif ( -r $scheme ) {
+            elsif ($scheme =~ /^\+?(?:\w+[:][:])*\w+$/) {
+                $self->_load_scheme_from_module($scheme);
+            }
+            elsif ( file_name_is_absolute($scheme) ) {
                 $self->_load_scheme_from_file($scheme);
             }
             else {
-                $self->_load_scheme_from_module($scheme);
+                croak "Unknown color scheme: $scheme";
             }
         }
     }
@@ -476,6 +477,9 @@ validation of the color names.)
 The value returned is in the six-digit hexidecimal format used in HTML and
 CSS (without the initial '#'). To convert it to separate red, green, and
 blue values (between 0 and 255), use the L</hex2tuple> function.
+
+You may also specify an absolute filename as a color scheme, if the file
+is in the same format as the standard F<rgb.txt> file.
 
 =head2 Object-Oriented Interface
 

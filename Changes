@@ -1,12 +1,19 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
-  [Enhancements]
-  - GCN::X color scheme updated to 2014-07-06 version.
-
   [Bug Fixes]
   - Pass through RGB hexidecimals prefixed by "0x", as claimed
     by the documentation.
+
+  - Fix ambiguity between modiles and filenames, RT 54500.
+
+  - Schema modules can be in any namespace.
+
+  [Enhancements]
+  - GCN::X color scheme updated to 2014-07-06 version.
+
+  [Incompatabilities]
+  - Filenames must now be absolute.
 
 v3.1.2    2018-10-01 23:14:34+01:00 Europe/London
   [Tests]
