@@ -128,6 +128,9 @@ The value returned is in the six-digit hexidecimal format used in HTML and
 CSS (without the initial '#'). To convert it to separate red, green, and
 blue values (between 0 and 255), use the ["hex2tuple"](#hex2tuple) function.
 
+You may also specify an absolute filename as a color scheme, if the file
+is in the same format as the standard `rgb.txt` file.
+
 ## Object-Oriented Interface
 
 If you prefer, an object-oriented interface is available:
