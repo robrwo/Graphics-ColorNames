@@ -27,7 +27,7 @@ our @EXPORT    = ();
 
 sub VERSION {
     my ( $class, $wanted ) = @_;
-    return version->parse($wanted) <= version->parse($VERSION);
+    return version->parse($VERSION)->numify;
 }
 
 # We store Schemes in a hash as a quick-and-dirty way to filter
