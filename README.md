@@ -376,6 +376,7 @@ Robert Rothenberg <rrwo@cpan.org>
 - Magnus Cedergren <magnus@mbox604.swipnet.se>
 - Gary Vollink <gary@vollink.com>
 - Claus Färber <cfaerber@cpan.org>
+- Andreas J. König <andk@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
