@@ -5,7 +5,7 @@ Revision history for Graphics-ColorNames:
   - Added INSTALL file to the distribution.
 
   [Other]
-  - Add contributor.
+  - Added contributor to module metadata.
 
 v3.2.1    2018-10-06 10:59:36+01:00 Europe/London
   [Bug Fixes]
