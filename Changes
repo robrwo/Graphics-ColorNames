@@ -17,6 +17,9 @@ Revision history for Graphics-ColorNames:
 
   - Added INSTALL file to the distribution.
 
+  [Tests]
+  - Reorganised and improved tests.
+
   [Other]
   - The tied and autoloading interfaces are deprecated.
 
