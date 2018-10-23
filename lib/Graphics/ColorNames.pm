@@ -451,11 +451,6 @@ blue values (between 0 and 255), use the L</hex2tuple> function.
 You may also specify an absolute filename as a color scheme, if the file
 is in the same format as the standard F<rgb.txt> file.
 
-A hexidecimal RGB value in the form of C<#RRGGBB>, C<0xRRGGBB> or
-C<RRGGBB> will return itself:
-
-  $color = $pal->hex('#123abc');         # returns '123abc'
-
 =method C<hex>
 
   $hex = $obj->hex($name, $prefix);
@@ -467,6 +462,11 @@ example,
   $hex = $obj->hex('blue', '#'); # returns "#0000ff"
 
 If the color does not exist, it will return an empty string.
+
+A hexidecimal RGB value in the form of C<#RRGGBB>, C<0xRRGGBB> or
+C<RRGGBB> will return itself:
+
+  $color = $pal->hex('#123abc');         # returns '123abc'
 
 =method autoloaded color name methods
 
