@@ -425,18 +425,18 @@ well:
 
 =method C<rgb>
 
-  @rgb = $obj->rgb($name);
+  @rgb = $pal->rgb($name);
 
-  $rgb = $obj->rgb($name, $separator);
+  $rgb = $pal->rgb($name, $separator);
 
 If called in a list context, returns a triplet.
 
 If called in a scalar context, returns a string separated by an
 optional separator (which defauls to a comma).  For example,
 
-  @rgb = $obj->rgb('blue');      # returns (0, 0, 255)
+  @rgb = $pal->rgb('blue');      # returns (0, 0, 255)
 
-  $rgb = $obj->rgb('blue', ','); # returns "0,0,255"
+  $rgb = $pal->rgb('blue', ','); # returns "0,0,255"
 
 Color names are case insensitive, and spaces or punctuation are
 ignored. So "Alice Blue" returns the same value as "aliceblue",
@@ -453,13 +453,13 @@ is in the same format as the standard F<rgb.txt> file.
 
 =method C<hex>
 
-  $hex = $obj->hex($name, $prefix);
+  $hex = $pal->hex($name, $prefix);
 
 Returns a 6-digit hexidecimal RGB code for the color.  If an optional
 prefix is specified, it will prefix the code with that string.  For
 example,
 
-  $hex = $obj->hex('blue', '#'); # returns "#0000ff"
+  $hex = $pal->hex('blue', '#'); # returns "#0000ff"
 
 If the color does not exist, it will return an empty string.
 
@@ -480,7 +480,7 @@ This is deprecated, and will be removed in a future version.
 
 =method C<load_scheme>
 
-  $po->load_scheme( $scheme );
+  $pal->load_scheme( $scheme );
 
 This dynamically loads a color scheme, which can be either a hash
 reference or code reference.
