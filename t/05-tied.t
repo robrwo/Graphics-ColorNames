@@ -5,15 +5,7 @@ use strict;
 use Test::More;
 use Test::Exception;
 
-use_ok( 'Graphics::ColorNames', '2.10', qw( hex2tuple tuple2hex all_schemes ) );
-
-{
-    my %schemes = map { $_ => 1, } all_schemes();
-    ok( ( keys %schemes ) >= 3 );    # Windows, HTML, and X
-    ok( $schemes{X} );
-    ok( $schemes{HTML} );
-    ok( $schemes{Windows} );
-}
+use_ok( 'Graphics::ColorNames', '3.3', qw( hex2tuple tuple2hex ) );
 
 tie my %colors, 'Graphics::ColorNames';
 ok( tied %colors );
@@ -90,11 +82,5 @@ ok( $colors4{DarkGreen} eq '008000' );    # DarkGreen in Windows
 
 ok( !defined $colors{NonExistentColorName} );
 ok( !exists $colors{NonExistentColorName} );
-
-# Test dynamic loading of scheme
-
-my $colorobj = tied(%colors);
-$colorobj->load_scheme( { nonexistentcolorname => 0x123456 } );
-ok( $colors{NonExistentColorName} eq '123456' );
 
 done_testing;
