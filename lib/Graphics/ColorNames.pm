@@ -351,10 +351,14 @@ sub _load_scheme_from_file {
 }
 
 sub hex {
-    my $self = shift;
-    my $rgb  = $self->FETCH( my $name = shift );
-    my $pre  = shift || "";
-    return ( $pre . $rgb );
+    my ($self, $name, $prefix) = @_;
+    my $rgb  = $self->FETCH($name);
+
+    return '' unless defined $rgb;
+
+    return $rgb unless defined $prefix;
+
+    return $prefix . $rgb;
 }
 
 sub rgb {
