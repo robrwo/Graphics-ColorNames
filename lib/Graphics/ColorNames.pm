@@ -466,6 +466,8 @@ example,
 
   $hex = $obj->hex('blue', '#'); # returns "#0000ff"
 
+If the color does not exist, it will return an empty string.
+
 =method autoloaded color name methods
 
 An autoloading interface was added in v2.11:

@@ -11,6 +11,8 @@ Revision history for Graphics-ColorNames:
   [Documentation]
   - Reorganised the documentation.
 
+  - Documented handling of unknown color names.
+
   - Added INSTALL file to the distribution.
 
   [Other]
