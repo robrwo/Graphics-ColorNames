@@ -1,6 +1,8 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+
+v3.3.0    2018-10-23 21:29:56+01:00 Europe/London
   [Incompatabilities]
   - The GCN::HTML and GCN::Windows schemes have been removed and
     released as separate modules.
