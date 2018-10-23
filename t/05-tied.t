@@ -1,9 +1,6 @@
 #!/usr/bin/perl
 
-use strict;
-
-use Test::More;
-use Test::Exception;
+use Test::Most;
 
 use_ok( 'Graphics::ColorNames', '3.3', qw( hex2tuple tuple2hex ) );
 
