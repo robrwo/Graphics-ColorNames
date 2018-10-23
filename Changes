@@ -5,6 +5,8 @@ Revision history for Graphics-ColorNames:
   - The GCN::HTML and GCN::Windows schemes have been removed and
     released as separate modules.
 
+  - The prefix is now ignored for hex method for invalid color names.
+
   [Bug Fixes]
   - Removed undef warning for invalid color names.
 
