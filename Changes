@@ -11,14 +11,14 @@ Revision history for Graphics-ColorNames:
   - Removed undef warning for unknown color names in hex and rgb methods.
 
   [Documentation]
-  - Reorganised the documentation.
+  - Reorganized the documentation.
 
   - Documented handling of unknown color names in hex and rgb methods.
 
   - Added INSTALL file to the distribution.
 
   [Tests]
-  - Reorganised and improved tests.
+  - Reorganized and improved tests.
 
   [Other]
   - The tied and autoloading interfaces are deprecated.
