@@ -362,12 +362,10 @@ sub hex {
 }
 
 sub rgb {
-    my $self = shift;
-    my @rgb  = hex2tuple( $self->FETCH( my $name = shift ) );
-    my $sep  = shift || ',';                                    # (*)
-    return wantarray ? @rgb : join( $sep, @rgb );
-
-    # (*) A possible bug, if one uses "0" as a separator. But this is not likely
+    my ($self, $name, $separator) = @_;
+    my $rgb = $self->FETCH($name);
+    my @rgb = (defined $rgb) ? hex2tuple( $rgb ) : ();
+    return wantarray ? @rgb : join($separator || ',', @rgb);
 }
 
 1;
