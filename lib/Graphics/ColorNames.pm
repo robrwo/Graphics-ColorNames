@@ -436,6 +436,9 @@ optional separator (which defauls to a comma).  For example,
 
   $rgb = $pal->rgb('blue', ','); # returns "0,0,255"
 
+Unknown color names return empty lists or strings, depending on the
+context.
+
 Color names are case insensitive, and spaces or punctuation are
 ignored. So "Alice Blue" returns the same value as "aliceblue",
 "ALICE-BLUE" and "a*lICEbl-ue".  (If you are using color names based

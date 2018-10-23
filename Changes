@@ -8,12 +8,12 @@ Revision history for Graphics-ColorNames:
   - The prefix is now ignored for hex method for invalid color names.
 
   [Bug Fixes]
-  - Removed undef warning for invalid color names.
+  - Removed undef warning for unknown color names in hex and rgb methods.
 
   [Documentation]
   - Reorganised the documentation.
 
-  - Documented handling of unknown color names.
+  - Documented handling of unknown color names in hex and rgb methods.
 
   - Added INSTALL file to the distribution.
 
