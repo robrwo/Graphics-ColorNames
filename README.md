@@ -66,9 +66,9 @@ my $pal = Graphics::ColorNames->new( 'Color::Library::Dictionary::HTML' );
 ## `rgb`
 
 ```
-@rgb = $obj->rgb($name);
+@rgb = $pal->rgb($name);
 
-$rgb = $obj->rgb($name, $separator);
+$rgb = $pal->rgb($name, $separator);
 ```
 
 If called in a list context, returns a triplet.
@@ -77,10 +77,13 @@ If called in a scalar context, returns a string separated by an
 optional separator (which defauls to a comma).  For example,
 
 ```
-@rgb = $obj->rgb('blue');      # returns (0, 0, 255)
+@rgb = $pal->rgb('blue');      # returns (0, 0, 255)
 
-$rgb = $obj->rgb('blue', ','); # returns "0,0,255"
+$rgb = $pal->rgb('blue', ','); # returns "0,0,255"
 ```
+
+Unknown color names return empty lists or strings, depending on the
+context.
 
 Color names are case insensitive, and spaces or punctuation are
 ignored. So "Alice Blue" returns the same value as "aliceblue",
@@ -95,17 +98,10 @@ blue values (between 0 and 255), use the ["hex2tuple"](#hex2tuple) function.
 You may also specify an absolute filename as a color scheme, if the file
 is in the same format as the standard `rgb.txt` file.
 
-A hexidecimal RGB value in the form of `#RRGGBB`, `0xRRGGBB` or
-`RRGGBB` will return itself:
-
-```
-$color = $pal->hex('#123abc');         # returns '123abc'
-```
-
 ## `hex`
 
 ```
-$hex = $obj->hex($name, $prefix);
+$hex = $pal->hex($name, $prefix);
 ```
 
 Returns a 6-digit hexidecimal RGB code for the color.  If an optional
@@ -113,7 +109,16 @@ prefix is specified, it will prefix the code with that string.  For
 example,
 
 ```
-$hex = $obj->hex('blue', '#'); # returns "#0000ff"
+$hex = $pal->hex('blue', '#'); # returns "#0000ff"
+```
+
+If the color does not exist, it will return an empty string.
+
+A hexidecimal RGB value in the form of `#RRGGBB`, `0xRRGGBB` or
+`RRGGBB` will return itself:
+
+```
+$color = $pal->hex('#123abc');         # returns '123abc'
 ```
 
 ## autoloaded color name methods
@@ -131,7 +136,7 @@ This is deprecated, and will be removed in a future version.
 ## `load_scheme`
 
 ```
-$po->load_scheme( $scheme );
+$pal->load_scheme( $scheme );
 ```
 
 This dynamically loads a color scheme, which can be either a hash
