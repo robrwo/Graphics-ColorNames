@@ -6,9 +6,13 @@ Revision history for Graphics-ColorNames:
     released as separate modules.
 
   [Documentation]
+  - Reorganised the documentation.
+
   - Added INSTALL file to the distribution.
 
   [Other]
+  - The tied and autoloading interfaces are deprecated.
+
   - Added contributor to module metadata.
 
 v3.2.1    2018-10-06 10:59:36+01:00 Europe/London

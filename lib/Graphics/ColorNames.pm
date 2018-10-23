@@ -267,10 +267,6 @@ BEGIN {
     *new = \&TIEHASH;
 }
 
-1;
-
-## __END__
-
 # Convert 6-digit hexidecimal code (used for HTML etc.) to an array of
 # RGB values
 
@@ -370,26 +366,23 @@ sub rgb {
     # (*) A possible bug, if one uses "0" as a separator. But this is not likely
 }
 
+1;
+
 __END__
 
 =head1 SYNOPSIS
 
-  use Graphics::ColorNames 2.10;
+  use Graphics::ColorNames;
+  use Graphics::ColorNames::WWW;
 
-  $po = Graphics::ColorNames->new( qw[ X ] );
+  $pal = Graphics::ColorNames->new( qw[ X WWW ] );
 
-  $rgb = $po->hex('green');          # returns '00ff00'
-  $rgb = $po->hex('green', '0x');    # returns '0x00ff00'
-  $rgb = $po->hex('green', '#');     # returns '#00ff00'
+  $rgb = $pal->hex('green');          # returns '00ff00'
+  $rgb = $pal->hex('green', '0x');    # returns '0x00ff00'
+  $rgb = $pal->hex('green', '#');     # returns '#00ff00'
 
-  $rgb = $po->rgb('green');          # returns '0,255,0'
-  @rgb = $po->rgb('green');          # returns (0, 255, 0)
-
-  $rgb = $po->green;                 # same as $po->hex('green');
-
-  tie %ph, 'Graphics::ColorNames', (qw[ X ]);
-
-  $rgb = $ph{green};                 # same as $po->hex('green');
+  $rgb = $pal->rgb('green');          # returns '0,255,0'
+  @rgb = $pal->rgb('green');          # returns (0, 255, 0)
 
 =head1 DESCRIPTION
 
@@ -400,126 +393,33 @@ name; and (2) free module authors from having to "re-invent the wheel"
 whenever they decide to give the users the option of specifying a
 color by name rather than RGB value.
 
-For example,
+=method C<new>
 
-  use Graphics::ColorNames 2.10;
+The constructor is as follows:
 
-  use GD;
+  my $pal = Graphics::ColorNames->new( @schemes );
 
-  $pal = Graphics::ColorNames->new;
-
-  $img = new GD::Image(100, 100);
-
-  $bgColor = $img->colorAllocate( $pal->rgb('CadetBlue3') );
-
-Although this is a little "bureaucratic", the meaning of this code is clear:
-C<$bgColor> (or background color) is 'CadetBlue3' (which is easier to for one
-to understand than C<0x7A, 0xC5, 0xCD>). The variable is named for its
-function, not form (ie, C<$CadetBlue3>) so that if the author later changes
-the background color, the variable name need not be changed.
-
-You can also define L</Custom Color Schemes> for specialised palettes
-for websites or institutional publications:
-
-  $color = $pal->hex('MenuBackground');
-
-As an added feature, a hexidecimal RGB value in the form of #RRGGBB,
-0xRRGGBB or RRGGBB will return itself:
-
-  $color = $pal->hex('#123abc');         # returns '123abc'
-
-=head2 Tied Interface
-
-The standard interface (prior to version 0.40) is through a tied hash:
-
-  tie %pal, 'Graphics::ColorNames', @schemes;
-
-where C<%pal> is the tied hash and C<@schemes> is a list of
-L<color schemes|/Color Schemes>.
+where C<@schemes> is an array of color schemes (palettes, dictionaries).
 
 A valid color scheme may be the name of a color scheme (such as C<X>
 or a full module name such as C<Graphics::ColorNames::X>), a reference
 to a color scheme hash or subroutine, or to the path or open
 filehandle for a F<rgb.txt> file.
 
-As of version 2.1002, one can also use L<Color::Library> dictionaries:
+If none are specified, it uses the default C<X> color scheme, which
+corresponds to the X-Windows F<rgb.txt> colors.  For most purposes,
+this is good enough.  Since v3.2.0, it was updated to use the
+2014-07-06 colors, so includes the standard CSS colors as well.
 
-  tie %pal, 'Graphics::ColorNames', qw(Color::Library::Dictionary::HTML);
+Other color schemes are available on CPAN,
+e.g. L<Graphics::ColorNames::WWW>.
 
-This is an experimental feature which may change in later versions (see
-L</SEE ALSO> for a discussion of the differences between modules).
+Since version 2.1002, L<Color::Library> dictionaries can be used as
+well:
 
-Multiple schemes can be used:
+  my $pal = Graphics::ColorNames->new( 'Color::Library::Dictionary::HTML' );
 
-  tie %pal, 'Graphics::ColorNames', qw(HTML X);
-
-In this case, if the name is not a valid HTML color, the X-windows
-name will be used.
-
-One can load all available schemes in the Graphics::ColorNames namespace
-(as of version 2.0):
-
-  use Graphics::ColorNames 2.0, 'all_schemes';
-  tie %NameTable, 'Graphics::ColorNames', all_schemes();
-
-When multiple color schemes define the same name, then the earlier one
-listed has priority (however, hash-based color schemes always have
-priority over code-based color schemes).
-
-When no color scheme is specified, the X-Windows scheme is assumed.
-
-Color names are case insensitive, and spaces or punctuation
-are ignored.  So "Alice Blue" returns the same
-value as "aliceblue", "ALICE-BLUE" and "a*lICEbl-ue".  (If you are
-using color names based on user input, you may want to add additional
-validation of the color names.)
-
-The value returned is in the six-digit hexidecimal format used in HTML and
-CSS (without the initial '#'). To convert it to separate red, green, and
-blue values (between 0 and 255), use the L</hex2tuple> function.
-
-You may also specify an absolute filename as a color scheme, if the file
-is in the same format as the standard F<rgb.txt> file.
-
-=head2 Object-Oriented Interface
-
-If you prefer, an object-oriented interface is available:
-
-  use Graphics::ColorNames 0.40;
-
-  $obj = Graphics::ColorNames->new('/etc/rgb.txt');
-
-  $hex = $obj->hex('skyblue'); # returns "87ceeb"
-  @rgb = $obj->rgb('skyblue'); # returns (0x87, 0xce, 0xeb)
-
-The interface is similar to the L<Color::Rgb> module:
-
-=over
-
-=item new
-
-  $obj = Graphics::ColorNames->new( @SCHEMES );
-
-Creates the object, using the default L<color schemes|/Color Schemes>.
-If none are specified, it uses the C<X> scheme.
-
-=item load_scheme
-
-  $obj->load_scheme( $scheme );
-
-Loads a scheme dynamically.  The scheme may be any hash or code reference.
-
-=item hex
-
-  $hex = $obj->hex($name, $prefix);
-
-Returns a 6-digit hexidecimal RGB code for the color.  If an optional
-prefix is specified, it will prefix the code with that string.  For
-example,
-
-  $hex = $obj->hex('blue', '#'); # returns "#0000ff"
-
-=item rgb
+=method C<rgb>
 
   @rgb = $obj->rgb($name);
 
@@ -534,78 +434,78 @@ optional separator (which defauls to a comma).  For example,
 
   $rgb = $obj->rgb('blue', ','); # returns "0,0,255"
 
-=back
+Color names are case insensitive, and spaces or punctuation are
+ignored. So "Alice Blue" returns the same value as "aliceblue",
+"ALICE-BLUE" and "a*lICEbl-ue".  (If you are using color names based
+on user input, you should add additional validation of the color
+names.)
 
-Since version 2.10_02, the interface will assume method names
-are color names and return the hex value,
+The value returned is in the six-digit hexidecimal format used in HTML and
+CSS (without the initial '#'). To convert it to separate red, green, and
+blue values (between 0 and 255), use the L</hex2tuple> function.
 
-  $obj->black eq $obj->hex("black")
+You may also specify an absolute filename as a color scheme, if the file
+is in the same format as the standard F<rgb.txt> file.
+
+A hexidecimal RGB value in the form of C<#RRGGBB>, C<0xRRGGBB> or
+C<RRGGBB> will return itself:
+
+  $color = $pal->hex('#123abc');         # returns '123abc'
+
+=method C<hex>
+
+  $hex = $obj->hex($name, $prefix);
+
+Returns a 6-digit hexidecimal RGB code for the color.  If an optional
+prefix is specified, it will prefix the code with that string.  For
+example,
+
+  $hex = $obj->hex('blue', '#'); # returns "#0000ff"
+
+=method autoloaded color name methods
+
+An autoloading interface was added in v2.11:
+
+  $po->green; # same as $po->rgb('green');
 
 Method names are case-insensitive, and underscores are ignored.
 
-=head2 Utility Functions
+This is deprecated, and will be removed in a future version.
 
-These functions are not exported by default, so much be specified to
-be used:
+=method C<load_scheme>
 
-  use Graphics::ColorNames qw( all_schemes hex2tuple tuple2hex );
+  $po->load_scheme( $scheme );
 
-=over
+This dynamically loads a color scheme, which can be either a hash
+reference or code reference.
 
-=item all_schemes
+=export C<all_schemes>
 
-  @schemes = all_schemes();
+  my @schemes = all_schemes();
 
 Returns a list of all available color schemes installed on the machine
 in the F<Graphics::ColorNames> namespace.
 
 The order has no significance.
 
-=item hex2tuple
+=export C<hex2tuple>
 
-  ($red, $green, $blue) = hex2tuple( $colors{'AliceBlue'});
+Converts a hexidecimal string to a tuple.
 
-=item tuple2hex
+=export C<tuple2hex>
 
-  $rgb = tuple2hex( $red, $green, $blue );
+Converts a tuple to a hexidecimal string.
 
-=back
+=head1 TIED INTERFACE
 
-=head2 Color Schemes
+The standard interface (prior to version 0.40) was through a tied hash:
 
-The following schemes are available by default:
+  tie %pal, 'Graphics::ColorNames', qw[ X WWW ];
 
-=over
+This interface is deprecated, and will be moved to a separate module
+in the future.
 
-=item X
-
-About 750 color names used in X-Windows (although about 90+ of them are
-duplicate names with spaces).
-
-=item HTML
-
-16 common color names defined in the HTML 4.0 specification. These
-names are also used with older CSS and SVG specifications. (You may
-want to see L<Graphics::ColorNames::SVG> for a complete list.)
-
-=item Windows
-
-16 commom color names used with Microsoft Windows and related
-products.  These are actually the same colors as the L</HTML> scheme,
-although with different names.
-
-=back
-
-Note that the L<Graphics::ColorNames::Netscape> scheme is no longer
-included with this distribution. If you need it, you should install it
-separately.
-
-Rather than a color scheme, the path or open filehandle for a
-F<rgb.txt> file may be specified.
-
-Additional color schemes are available on CPAN.
-
-=head2 Custom Color Schemes
+=head1 CUSTOM COLOR SCHEMES
 
 You can add naming scheme files by creating a Perl module is the name
 C<Graphics::ColorNames::SCHEMENAME> which has a subroutine named
@@ -644,7 +544,7 @@ duplicate entrieswith spaces and punctuation, then the minimum
 version of L<Graphics::ColorNames> should be 2.10 in your requirements.)
 
 An example of an additional module is the L<Graphics::ColorNames::Mozilla>
-module by Steve Pomeroy.
+module.
 
 Since version 1.03, C<NamesRgbTable> may also return a code reference:
 
