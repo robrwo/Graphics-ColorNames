@@ -1,6 +1,8 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+
+v3.3.1    2018-10-24 16:03:19+01:00 Europe/London
   [Tests]
   - Fixed text dependencies on modules that have been moved to
     separate distributions, RT 127430.
