@@ -1,6 +1,8 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+  [Toolchain]
+  - Tweaks to dist.ini for simplifying build.
 
 v3.3.1    2018-10-24 16:03:19+01:00 Europe/London
   [Tests]
