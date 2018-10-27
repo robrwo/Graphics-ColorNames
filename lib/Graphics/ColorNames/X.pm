@@ -14,7 +14,7 @@ package Graphics::ColorNames::X;
 This module defines color names and their associated RGB values used in
 X-Windows.
 
-It is based on the 2014 version of the F<rgb.txt> file, whcih includes
+It is based on the 2014 version of the F<rgb.txt> file, which includes
 colors from CSS4.
 
 =head1 SEE ALSO
