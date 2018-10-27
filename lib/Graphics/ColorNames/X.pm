@@ -30,7 +30,7 @@ L<rgb.txt|https://cgit.freedesktop.org/xorg/app/rgb/plain/rgb.txt>
 use strict;
 use warnings;
 
-our $VERSION = 'v3.3.2';
+our $VERSION = 'v3.3.3';
 
 
 sub NamesRgbTable() {
