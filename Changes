@@ -1,6 +1,8 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+
+v3.3.3    2018-10-27 19:31:14+01:00 Europe/London
   [Documentation]
   - Fix typo in GCN::X POD.
 
