@@ -1,6 +1,9 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+  [Bug Fixes]
+  - Fix VERSION class method, RT 127301.
+
   [Toolchain]
   - Tweaks to dist.ini for simplifying build.
 
