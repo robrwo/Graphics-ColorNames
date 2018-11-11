@@ -1,6 +1,8 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+  [Documentation]
+  - Added a ROADMAP section for planned changes.
 
   [Toolchain]
   - Tweaks to dist.ini.
