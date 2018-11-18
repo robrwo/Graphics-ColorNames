@@ -10,7 +10,6 @@ use version;
 
 use Exporter qw/ import /;
 
-# use AutoLoader;
 use Carp;
 use File::Spec::Functions qw/ file_name_is_absolute /;
 use Module::Load 0.10;
@@ -34,29 +33,7 @@ sub VERSION {
 # duplicates (which sometimes occur when directories are repeated in
 # @INC or via symlinks).  The order does not matter.
 
-# If we use AutoLoader, these should be use vars() ?
-
 my %FoundSchemes = ();
-
-# Since 2.10_02, we've added autoloading color names to the object-
-# oriented interface.
-
-our $AUTOLOAD;
-
-sub AUTOLOAD {
-    $AUTOLOAD =~ /^(.*:)*([\w\_]+)$/;
-    my $name = $2;
-    my $hex = ( my $self = $_[0] )->FETCH($name);
-    if ( defined $hex ) {
-        return $hex;
-    }
-    else {
-        croak "No method or color named $name";
-
-        # $AutoLoader::AUTOLOAD = $AUTOLOAD;
-        # goto &AutoLoader::AUTOLOAD;
-    }
-}
 
 sub _load {
     while ( my $module = shift ) {
@@ -253,9 +230,6 @@ sub DESTROY {
     my $self = shift;
     delete $self->{_schemes};
     delete $self->{_iterator};
-}
-
-sub UNTIE {    # stub to avoid AUTOLOAD
 }
 
 BEGIN {
@@ -471,13 +445,7 @@ C<RRGGBB> will return itself:
 
 =method autoloaded color name methods
 
-An autoloading interface was added in v2.11:
-
-  $po->green; # same as $po->rgb('green');
-
-Method names are case-insensitive, and underscores are ignored.
-
-This is deprecated, and will be removed in a future version.
+Autoloaded color name methods were removed in v3.4.0.
 
 =method C<load_scheme>
 
@@ -576,10 +544,6 @@ The following changes are planned in the future:
 
 Support for Perl versions earlier than 5.10 will be removed sometime
 in 2019.
-
-=item *
-
-Autoloaded color name methods will be removed.
 
 =item *
 
