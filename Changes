@@ -1,6 +1,8 @@
 Revision history for Graphics-ColorNames:
 
 {{$NEXT}}
+
+v3.4.0    2018-11-18 19:12:44+00:00 Europe/London
   [Incompatabilities]
   - Autoloaded color name methods were removed.
 
