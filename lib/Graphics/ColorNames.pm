@@ -15,7 +15,7 @@ use File::Spec::Functions qw/ file_name_is_absolute /;
 use Module::Load 0.10;
 use Module::Loaded;
 
-our $VERSION = 'v3.4.1';
+our $VERSION = 'v3.5.0';
 
 our %EXPORT_TAGS = (
     'all'     => [qw( hex2tuple tuple2hex all_schemes )],
