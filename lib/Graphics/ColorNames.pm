@@ -543,7 +543,7 @@ module for users that wish to use it.
 =item *
 
 The namespace for color schemes will be moved to the
-C<Graphics::ColorNames::Schemes> but optios will be added to use the
+C<Graphics::ColorNames::Schemes> but options will be added to use the
 existing scheme.
 
 This will allow modules to be named like C<Graphics::ColorNames::Tied>
