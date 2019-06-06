@@ -2,8 +2,7 @@ Revision history for {{$dist->name}}:
 
 {{$NEXT}}
   [Incompatabilities]
-  - Bumped minimum prerequisite to Perl v5.10 and removed pre-v5.10
-    cruft.
+  - Bumped minimum prerequisite to Perl v5.10.
 
   [Documentation]
   - Corrected typo.
