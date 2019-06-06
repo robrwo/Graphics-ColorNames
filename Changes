@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}:
 
 {{$NEXT}}
+
+v3.5.0    2019-06-06 21:28:32+01:00 Europe/London
   [Incompatabilities]
   - Bumped minimum prerequisite to Perl v5.10.
 
