@@ -6,7 +6,7 @@ use 5.006;
 use strict;
 use warnings;
 
-use version;
+use v5.10;
 
 use Exporter qw/ import /;
 
@@ -23,11 +23,6 @@ our %EXPORT_TAGS = (
 );
 our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 our @EXPORT    = ();
-
-sub VERSION {
-    my ( $class, $wanted ) = @_;
-    return version->parse($VERSION);
-}
 
 # We store Schemes in a hash as a quick-and-dirty way to filter
 # duplicates (which sometimes occur when directories are repeated in
@@ -539,11 +534,6 @@ See L<Graphics::ColorNames::GrayScale> for an example.
 The following changes are planned in the future:
 
 =over 4
-
-=item *
-
-Support for Perl versions earlier than 5.10 will be removed sometime
-in 2019.
 
 =item *
 
