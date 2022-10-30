@@ -4,7 +4,7 @@ Graphics::ColorNames - defines RGB values for common color names
 
 # VERSION
 
-version v3.5.0
+version v3.5.1
 
 # SYNOPSIS
 
@@ -54,9 +54,9 @@ this is good enough.  Since v3.2.0, it was updated to use the
 2014-07-06 colors, so includes the standard CSS colors as well.
 
 Other color schemes are available on CPAN,
-e.g. [Graphics::ColorNames::WWW](https://metacpan.org/pod/Graphics::ColorNames::WWW).
+e.g. [Graphics::ColorNames::WWW](https://metacpan.org/pod/Graphics%3A%3AColorNames%3A%3AWWW).
 
-Since version 2.1002, [Color::Library](https://metacpan.org/pod/Color::Library) dictionaries can be used as
+Since version 2.1002, [Color::Library](https://metacpan.org/pod/Color%3A%3ALibrary) dictionaries can be used as
 well:
 
 ```perl
@@ -206,9 +206,9 @@ As of version 2.10, case, spaces and punctuation are ignored in color
 names. So a name like "Willy's Favorite Shade-of-Blue" is treated the
 same as "willysfavoroteshadeofblue".  (If your scheme does not include
 duplicate entrieswith spaces and punctuation, then the minimum
-version of [Graphics::ColorNames](https://metacpan.org/pod/Graphics::ColorNames) should be 2.10 in your requirements.)
+version of [Graphics::ColorNames](https://metacpan.org/pod/Graphics%3A%3AColorNames) should be 2.10 in your requirements.)
 
-An example of an additional module is the [Graphics::ColorNames::Mozilla](https://metacpan.org/pod/Graphics::ColorNames::Mozilla)
+An example of an additional module is the [Graphics::ColorNames::Mozilla](https://metacpan.org/pod/Graphics%3A%3AColorNames%3A%3AMozilla)
 module.
 
 Since version 1.03, `NamesRgbTable` may also return a code reference:
@@ -224,7 +224,7 @@ sub NamesRgbTable() {
 }
 ```
 
-See [Graphics::ColorNames::GrayScale](https://metacpan.org/pod/Graphics::ColorNames::GrayScale) for an example.
+See [Graphics::ColorNames::GrayScale](https://metacpan.org/pod/Graphics%3A%3AColorNames%3A%3AGrayScale) for an example.
 
 # ROADMAP
 
@@ -243,20 +243,20 @@ existing scheme.
 
 # SEE ALSO
 
-[Color::Library](https://metacpan.org/pod/Color::Library) provides an extensive library of color schemes. A notable
+[Color::Library](https://metacpan.org/pod/Color%3A%3ALibrary) provides an extensive library of color schemes. A notable
 difference is that it supports more complex schemes which contain additional
 information about individual colors and map multiple colors to a single name.
 
-[Color::Rgb](https://metacpan.org/pod/Color::Rgb) has a similar function to this module, but parses an
+[Color::Rgb](https://metacpan.org/pod/Color%3A%3ARgb) has a similar function to this module, but parses an
 `rgb.txt` file.
 
-[Graphics::ColorObject](https://metacpan.org/pod/Graphics::ColorObject) can convert between RGB and other color space
+[Graphics::ColorObject](https://metacpan.org/pod/Graphics%3A%3AColorObject) can convert between RGB and other color space
 types.
 
-[Graphics::ColorUtils](https://metacpan.org/pod/Graphics::ColorUtils) can also convert betweeb RGB and other color
+[Graphics::ColorUtils](https://metacpan.org/pod/Graphics%3A%3AColorUtils) can also convert betweeb RGB and other color
 space types, and supports RGB from names in various color schemes.
 
-[Acme::AutoColor](https://metacpan.org/pod/Acme::AutoColor) provides subroutines corresponding to color names.
+[Acme::AutoColor](https://metacpan.org/pod/Acme%3A%3AAutoColor) provides subroutines corresponding to color names.
 
 # SOURCE
 
@@ -295,7 +295,7 @@ Robert Rothenberg <rrwo@cpan.org>
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2001-2019 by Robert Rothenberg.
+This software is Copyright (c) 2001-2022 by Robert Rothenberg.
 
 This is free software, licensed under:
 
