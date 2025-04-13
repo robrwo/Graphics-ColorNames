@@ -11,6 +11,9 @@ package Graphics::ColorNames::X;
 
 =head1 DESCRIPTION
 
+See the documentation of L<Graphics::ColorNames> for information how to use
+this module.
+
 This module defines color names and their associated RGB values used in
 X-Windows.
 
@@ -34,7 +37,6 @@ our $VERSION = 'v3.5.1';
 
 
 sub NamesRgbTable() {
-    use integer;
     return {
         "snow"                 => 0xfffafa,
         "ghostwhite"           => 0xf8f8ff,
